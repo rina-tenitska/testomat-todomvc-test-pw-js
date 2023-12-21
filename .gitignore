@@ -1,0 +1,15 @@
+# Javascript
+node_modules
+
+# Mac
+.DS_Store
+
+*.log
+/test-results/
+/playwright-report/
+/blob-report/
+/playwright/.cache/
+
+__tests__/demo-todo-app.spec.js
+__tests__/example.spec.js
+playwright/.auth
