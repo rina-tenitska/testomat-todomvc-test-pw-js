@@ -13,3 +13,7 @@ node_modules
 __tests__/demo-todo-app.spec.js
 __tests__/example.spec.js
 playwright/.auth
+/test-results/
+/playwright-report/
+/blob-report/
+/playwright/.cache/

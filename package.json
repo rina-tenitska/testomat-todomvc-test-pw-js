@@ -5,7 +5,8 @@
   "description": "",
   "main": "lib/index.js",
   "scripts": {
-    "test": "cross-env TESTOMATIO=tstmt_GGX1ftpByV9J1KPlqoqHDfpNjb3AuaPjbg1703152119 npx playwright test"
+    "test": "cross-env TESTOMATIO=tstmt_GGX1ftpByV9J1KPlqoqHDfpNjb3AuaPjbg1703152119 npx playwright test",
+    "testSmoke": "cross-env TESTOMATIO=tstmt_GGX1ftpByV9J1KPlqoqHDfpNjb3AuaPjbg1703152119 npx start-test-run -c 'npx playwright test' --filter 'testomatio:tag-name=smoke'"
   },
   "keywords": [],
   "author": "",
