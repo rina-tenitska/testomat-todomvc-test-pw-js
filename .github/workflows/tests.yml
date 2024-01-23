@@ -1,0 +1,50 @@
+name: Playwright reporting
+
+on:
+  workflow_dispatch:
+    inputs:
+      grep:
+        description: 'tests to grep '
+        required: false
+        default: ''
+
+      run:
+        required: false
+      testomatio:
+        required: false
+
+      testomatio_url:
+        required: false
+
+jobs:
+  reporting:
+    runs-on: windows-latest
+
+    strategy:
+      matrix:
+        node-version: [20.x]
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - name: Setup dependencies
+        run: npm i
+
+      - name: Import tests and update IDs
+        run: npx check-tests Playwright "**/*{.,_}{test,spec,cy}.js" --update-ids
+        env:
+          TESTOMATIO: ${{ secrets.TESTOMATIO }}
+
+      - name: Playwright browser updates
+        run: npx playwright install
+
+      - name: Run tests and report to Testomatio
+        run: npx playwright test 
+        env:
+          TESTOMATIO: "${{ secrets.TESTOMATIO_PLAYWRIGHT }}"
+          TESTOMATIO_URL: "${{ secrets.TESTOMATIO_URL }}"
+    
