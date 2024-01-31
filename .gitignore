@@ -17,3 +17,5 @@ playwright/.auth
 /playwright-report/
 /blob-report/
 /playwright/.cache/
+
+GAtoken.txt
