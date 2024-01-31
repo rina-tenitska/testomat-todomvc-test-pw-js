@@ -37,7 +37,7 @@ jobs:
       - name: Import tests and update IDs
         run: npx check-tests Playwright "**/*{.,_}{test,spec,cy}.js" --update-ids
         env:
-          TESTOMATIO: ${{ secrets.TESTOMATIO }}
+          TESTOMATIO: ${{ secrets.TESTOMATIO_PLAYWRIGHT }}
 
       - name: Playwright browser updates
         run: npx playwright install
@@ -46,5 +46,5 @@ jobs:
         run: npx playwright test 
         env:
           TESTOMATIO: "${{ secrets.TESTOMATIO_PLAYWRIGHT }}"
-          TESTOMATIO_URL: "${{ secrets.TESTOMATIO_URL }}"
+          TESTOMATIO_URL: "https://app.testomat.io"
  
