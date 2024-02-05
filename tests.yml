@@ -43,7 +43,7 @@ jobs:
         run: npx playwright install
 
       - name: Run tests and report to Testomatio
-        run: npm testGrep
+        run: npm test
         env:
           grep: "${{ github.event.inputs.grep }}"
           TESTOMATIO: "${{ secrets.TESTOMATIO_PLAYWRIGHT }}"
