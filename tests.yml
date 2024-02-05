@@ -6,7 +6,7 @@ on:
       grep:
         description: 'tests to grep '
         required: false
-        default: ''
+        default: '${{ github.event.inputs.grep }}'
 
       run:
         required: false
@@ -45,7 +45,6 @@ jobs:
       - name: Run tests and report to Testomatio
         run: npm test --grep
         env:
-          grep: "${{github.event.inputs.grep}}"
           TESTOMATIO: "${{ secrets.TESTOMATIO_PLAYWRIGHT }}"
           TESTOMATIO_URL: "https://app.testomat.io"
  
