@@ -6,7 +6,7 @@ on:
       grep:
         description: 'tests to grep '
         required: false
-        default: '${{ github.event.inputs.grep }}'
+        default: ''
 
       run:
         required: false
@@ -33,7 +33,7 @@ jobs:
 
       - name: Output Inputs
         run: echo "${{ toJSON(github.event.inputs) }}"
-        
+
       - name: Setup dependencies
         run: npm i
 
@@ -46,7 +46,7 @@ jobs:
         run: npx playwright install
 
       - name: Run tests and report to Testomatio
-        run: npm test --grep
+        run: npm test --grep "${{ github.event.inputs.grep }}"
         env:
           TESTOMATIO: "${{ secrets.TESTOMATIO_PLAYWRIGHT }}"
           TESTOMATIO_URL: "https://app.testomat.io"
