@@ -5,6 +5,7 @@
   "description": "",
   "main": "lib/index.js",
   "scripts": {
+    "testGrep": "npx playwright test --grep ",
     "test": "cross-env TESTOMATIO=tstmt_Ygjd6F5asnWiz44i889KUOfIyzlENTPRDw1706681391 npx playwright test",
     "testSmoke": "cross-env TESTOMATIO=tstmt_Ygjd6F5asnWiz44i889KUOfIyzlENTPRDw1706681391 npx start-test-run -c 'npx playwright test' --filter 'testomatio:tag-name=smoke'"
   },
