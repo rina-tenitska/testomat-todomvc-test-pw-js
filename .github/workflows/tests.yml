@@ -31,20 +31,23 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
 
+      - name: Output Inputs
+        run: echo "${{ toJSON(github.event.inputs) }}"
+
       - name: Setup dependencies
         run: npm i
 
       - name: Import tests and update IDs
         run: npx check-tests Playwright "**/*{.,_}{test,spec,cy}.js" --update-ids
         env:
-          TESTOMATIO: ${{ secrets.TESTOMATIO }}
+          TESTOMATIO: ${{ secrets.TESTOMATIO_PLAYWRIGHT }}
 
       - name: Playwright browser updates
         run: npx playwright install
 
       - name: Run tests and report to Testomatio
-        run: npx playwright test 
+        run: npm test --grep "${{ github.event.inputs.grep }}"
         env:
           TESTOMATIO: "${{ secrets.TESTOMATIO_PLAYWRIGHT }}"
-          TESTOMATIO_URL: "${{ secrets.TESTOMATIO_URL }}"
-    
+          TESTOMATIO_URL: "https://app.testomat.io"
+ 
