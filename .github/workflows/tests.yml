@@ -31,9 +31,6 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
 
-      - name: Output Inputs
-        run: echo "${{ toJSON(github.event.inputs) }}"
-
       - name: Setup dependencies
         run: npm i
 
